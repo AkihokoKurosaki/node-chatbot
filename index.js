@@ -12,9 +12,13 @@ while (true) {
         break
     }
     else {
-        let api_url = `http://api.brainshop.ai/get?bid=${process.env.BRAINSHOP_BID}&key=${process.env.BRAINSHOP_KEY}&uid=${username}&msg=${command}`
-        let res = request('GET', api_url)
-        let data = JSON.parse(res.getBody().toString())
-        console.log(data.cnt)
+        try {
+          let api_url = `http://api.brainshop.ai/get?bid=${process.env.BRAINSHOP_BID}&key=${process.env.BRAINSHOP_KEY}&uid=${username}&msg=${command}`
+          let res = request('GET', api_url)
+          let data = JSON.parse(res.getBody().toString())
+          console.log(data.cnt)
+        } catch (error) {
+          console.error(error)
+        }
     }
 }
